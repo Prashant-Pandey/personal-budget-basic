@@ -1,99 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personal Budget</title>
-    <meta 
-        name="description" 
-        content="Personal Budget">
-    <meta name="author"
-        content="Prashant Pandey"/>
+    <!-- This is an SEO Change -->
+    <meta name="author" content="Prashant Pandey" />
+    <meta name="description" content="The app that lets you manage your personal budget">
+    <meta property="og:title" content="Personal Budget" />
+    <meta property="og:image" content="./bg.png" />
     <link rel="stylesheet" href="./reset.css">
     <link rel="stylesheet" href="./main.css">
 </head>
-<body>
 
+<body>
+    <!-- This is a Semantic HTML Change -->
     <header>
-        <nav class="menu">
+        <!-- This is a Semantic HTML Change -->
+        <nav class="menu" role="navigation">
             <ul>
+                <!-- This is an A11y Change -->
+                <a href="#main-container" class="hidden-visibility">Skip to main content</a>
                 <li><a href="#">Home</a></li>
                 <li><a href="./about.html">About</a></li>
                 <li><a href="./login.html">Login</a></li>
                 <li><a href="https://google.com">Google</a></li>
             </ul>
         </nav>
-    
-        <section class="hero">
-            <h1>Personal Budget</h1>
-            <h2>A personal-budget management app</h2>
+        <!-- This is a Semantic HTML Change --> <!-- This is an SEO Change --> <!-- This is an A11y Change -->
+        <section class="hero" itemscope itemtype="https://schema.org/Product" role="heading">
+            <h1 itemprop="name">Personal Budget</h1>
+            <h2  itemprop="description">A personal-budget management app</h2>
         </section>
     </header>
-
-    <main class="container center">
-
-        <div class="page-area">
-
-            <article class="text-box">
-                <h1>Stay on track</h1>
-                <p>
+    <!-- This is a Semantic HTML Change --> <!-- This is an A11y Change -->
+    <main class="container center" id="main-container" role="main">
+        <div class="page-area" role="presentation">
+            <!-- This is a Semantic HTML Change --> <!-- This is an SEO Change -->
+            <article class="text-box" itemprop="additionalProperty" itemscope itemtype="https://schema.org/PropertyValue">
+                <h1 itemprop="name">Stay on track</h1>
+                <p itemprop="value">
                     Do you know where you are spending your money? If you really stop to track it down,
                     you would get surprised! Proper budget management depends on real data... and this
                     app will help you with that!
                 </p>
             </article>
-    
-            <article class="text-box">
-                <h1>Alerts</h1>
-                <p>
+            <!-- This is a Semantic HTML Change --> <!-- This is an SEO Change -->
+            <article class="text-box" itemprop="additionalProperty" itemscope itemtype="https://schema.org/PropertyValue">
+                <h1 itemprop="name">Alerts</h1>
+                <p itemprop="value">
                     What if your clothing budget ended? You will get an alert. The goal is to never go over the budget.
                 </p>
             </article>
-    
-            <article class="text-box">
-                <h1>Results</h1>
-                <p>
+            <!-- This is a Semantic HTML Change --> <!-- This is an SEO Change -->
+            <article class="text-box" itemprop="additionalProperty" itemscope itemtype="https://schema.org/PropertyValue">
+                <h1 itemprop="name">Results</h1>
+                <p itemprop="value">
                     People who stick to a financial plan, budgeting every expense, get out of debt faster!
-                    Also, they to live happier lives... since they expend without guilt or fear... 
+                    Also, they to live happier lives... since they expend without guilt or fear...
                     because they know it is all good and accounted for.
                 </p>
             </article>
-    
-            <article class="text-box">
-                <h1>Free</h1>
-                <p>
+            <!-- This is a Semantic HTML Change --> <!-- This is an SEO Change -->
+            <article class="text-box" itemprop="additionalProperty" itemscope itemtype="https://schema.org/PropertyValue">
+                <h1 itemprop="name">Free</h1>
+                <p itemprop="value">
                     This app is free!!! And you are the only one holding your data!
                 </p>
             </article>
-    
-            <article class="text-box">
-                <h1>Stay on track</h1>
-                <p>
+            <!-- This is a Semantic HTML Change --> <!-- This is an SEO Change -->
+            <article class="text-box" itemprop="additionalProperty" itemscope itemtype="https://schema.org/PropertyValue">
+                <h1 itemprop="name">Stay on track</h1>
+                <p itemprop="value">
                     Do you know where you are spending your money? If you really stop to track it down,
                     you would get surprised! Proper budget management depends on real data... and this
                     app will help you with that!
                 </p>
             </article>
-    
-            <article class="text-box">
-                <h1>Alerts</h1>
-                <p>
+            <!-- This is a Semantic HTML Change --> <!-- This is an SEO Change -->
+            <article class="text-box" itemprop="additionalProperty" itemscope itemtype="https://schema.org/PropertyValue">
+                <h1 itemprop="name">Alerts</h1>
+                <p itemprop="value">
                     What if your clothing budget ended? You will get an alert. The goal is to never go over the budget.
                 </p>
             </article>
-    
-            <article class="text-box">
-                <h1>Results</h1>
-                <p>
+            <!-- This is a Semantic HTML Change --> <!-- This is an SEO Change -->
+            <article class="text-box" itemprop="additionalProperty" itemscope itemtype="https://schema.org/PropertyValue">
+                <h1 itemprop="name">Results</h1>
+                <p itemprop="value">
                     People who stick to a financial plan, budgeting every expense, get out of debt faster!
-                    Also, they to live happier lives... since they expend without guilt or fear... 
+                    Also, they to live happier lives... since they expend without guilt or fear...
                     because they know it is all good and accounted for.
                 </p>
             </article>
-    
-            <article class="text-box">
-                <h1>Free</h1>
-                <p>
+            <!-- This is a Semantic HTML Change --> <!-- This is an SEO Change -->
+            <article class="text-box" itemprop="additionalProperty" itemscope itemtype="https://schema.org/PropertyValue">
+                <h1 itemprop="name">Free</h1>
+                <p itemprop="value">
                     This app is free!!! And you are the only one holding your data!
                 </p>
             </article>
@@ -101,12 +105,14 @@
         </div>
 
     </main>
-
+    <!-- This is a Semantic HTML Change -->
     <footer class="bottom">
-        <div class="center">
-            All rights reserved &copy; Fabio Nolasco
+        <!-- This is an A11y Change -->
+        <div class="center" aria-label="Copyright">
+            All rights reserved &copy; Prashant Pandey
         </div>
     </footer>
 
 </body>
+
 </html>
