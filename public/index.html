@@ -106,7 +106,7 @@
             <!-- This is an SEO Change -->
             <article class="text-box" itemprop="additionalProperty" itemscope
                 itemtype="https://schema.org/PropertyValue">
-                <h1 itemprop="name">Results</h1>
+                <h1 itemprop="name">D3JS</h1>
                 <p itemprop="value">
                     People who stick to a financial plan, budgeting every expense, get out of debt faster!
                     Also, they to live happier lives... since they expend without guilt or fear...
@@ -117,7 +117,7 @@
             <!-- This is an SEO Change -->
             <article class="text-box" itemprop="additionalProperty" itemscope
                 itemtype="https://schema.org/PropertyValue">
-                <h1 itemprop="name">Chart</h1>
+                <h1 itemprop="name">Chart JS</h1>
                 <p itemprop="value">
                     <canvas id="myChart" height="300" width="400"></canvas>
                 </p>
@@ -136,38 +136,57 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.2.0/axios.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js'></script>
     <script>
-        const data = {
-            datasets: [{
-                data: [100, 350, 90],
-                backgroundColor:['#ffcd56','#ff6384','#36a2eb', '#fd6b19']
-            }],
-
-            // These labels appear in the legend and in the tooltips when hovering different arcs
-            labels: [
-                'Eat out',
-                'Rent',
-                'Groceries'
-            ]
-        };
-
-        const createChart = ()=>{
+        const createChartJSPieChart = async (data) => {
             const ctx = document.getElementById('myChart').getContext('2d');
-            const myPieChart = new Chart(ctx, {type:'pie', data});
+            const myPieChart = new Chart(ctx, { type: 'pie', data });
         }
 
-        const getBudget = ()=>{
-            axios.get('/budget').then((res)=>{
-                console.log(res.data);
-                for (let i = 0; i < res.data.length; i++) {
-                    data.datasets[0].data[i] = res.data[i].budget;
-                    data.labels[i] = res[i].title;
+        const getBudget = async () => {
+            try {
+                const res = await axios.get('/budget');
+                return res.data;
+            } catch (error) {
+                 // handle error
+                console.log('error', error);
+                return [];
+            }
+        }
+        const structureTheBudget = (data) => {
+            let schema = {
+                datasets: [{
+                    data: [100, 350, 90],
+                    backgroundColor: ['#ffcd56', '#ff6384', '#36a2eb', '#fd6b19']
+                }],
+
+                // These labels appear in the legend and in the tooltips when hovering different arcs
+                labels: [
+                    'Eat out',
+                    'Rent',
+                    'Groceries'
+                ]
+            };
+            if (data.length > 0) {
+                schema.datasets[0].data = [];
+                schema.labels = [];
+                schema.datasets[0].backgroundColor = [];
+                for (let i = 0; i < data.length; i++) {
+                    schema.datasets[0].data.push(data[i].budget);
+                    schema.datasets[0].backgroundColor.push(`rgba(${Math.random()*255}, ${Math.random()*255}, ${Math.random()*255}, 1)`)
+                    schema.labels.push(data[i].title);
                 }
-            })
+            }
+            return schema
         }
 
-        getBudget();
+        const init = async () => {
+            const rawData = await getBudget();
+            const structuredData = await structureTheBudget(rawData);
+            await createChartJSPieChart(structuredData);
+        }
 
-        createChart();
+        init().then(() => {
+            console.log('all changes made');
+        });
     </script>
 </body>
 
