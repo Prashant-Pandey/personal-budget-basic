@@ -10,8 +10,10 @@
     <meta name="description" content="The app that lets you manage your personal budget">
     <meta property="og:title" content="Personal Budget" />
     <meta property="og:image" content="./bg.png" />
-    <link rel="stylesheet" media="print" href="./reset.css" onload="this.media = 'all'">
-    <link rel="stylesheet" media="print" href="./main.css" onload="this.media = 'all'">
+    <!-- <link rel="stylesheet" media="print" href="./css/reset.css" onload="this.media = 'all'">
+    <link rel="stylesheet" media="print" href="./css/main.css" onload="this.media = 'all'"> -->
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/main.css">
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css' />
 </head>
 
@@ -42,6 +44,24 @@
     <main class="container center" id="main-container" role="main">
         <!-- This is an A11y Change -->
         <div class="page-area" role="presentation">
+            <!-- This is a Semantic HTML Change -->
+            <!-- This is an SEO Change -->
+            <article class="text-box" itemprop="additionalProperty" itemscope
+                itemtype="https://schema.org/PropertyValue">
+                <h1 itemprop="name">D3 JS</h1>
+                <p itemprop="value">
+                    <svg id="d3Chart" height="300" width="500"></svg>
+                </p>
+            </article>
+            <!-- This is a Semantic HTML Change -->
+            <!-- This is an SEO Change -->
+            <article class="text-box" itemprop="additionalProperty" itemscope
+                itemtype="https://schema.org/PropertyValue">
+                <h1 itemprop="name">Chart JS</h1>
+                <p itemprop="value">
+                    <canvas id="myChart" height="300" width="500"></canvas>
+                </p>
+            </article>
             <!-- This is a Semantic HTML Change -->
             <!-- This is an SEO Change -->
             <article class="text-box" itemprop="additionalProperty" itemscope
@@ -102,27 +122,6 @@
                     What if your clothing budget ended? You will get an alert. The goal is to never go over the budget.
                 </p>
             </article>
-            <!-- This is a Semantic HTML Change -->
-            <!-- This is an SEO Change -->
-            <article class="text-box" itemprop="additionalProperty" itemscope
-                itemtype="https://schema.org/PropertyValue">
-                <h1 itemprop="name">D3JS</h1>
-                <p itemprop="value">
-                    People who stick to a financial plan, budgeting every expense, get out of debt faster!
-                    Also, they to live happier lives... since they expend without guilt or fear...
-                    because they know it is all good and accounted for.
-                </p>
-            </article>
-            <!-- This is a Semantic HTML Change -->
-            <!-- This is an SEO Change -->
-            <article class="text-box" itemprop="additionalProperty" itemscope
-                itemtype="https://schema.org/PropertyValue">
-                <h1 itemprop="name">Chart JS</h1>
-                <p itemprop="value">
-                    <canvas id="myChart" height="300" width="400"></canvas>
-                </p>
-            </article>
-
         </div>
 
     </main>
@@ -133,9 +132,10 @@
             All rights reserved &copy; Prashant Pandey
         </div>
     </footer>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.2.0/axios.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js'></script>
-    <script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script defer>
         const createChartJSPieChart = async (data) => {
             const ctx = document.getElementById('myChart').getContext('2d');
             const myPieChart = new Chart(ctx, { type: 'pie', data });
@@ -143,10 +143,10 @@
 
         const getBudget = async () => {
             try {
-                const res = await axios.get('/budget');
+                const res = await axios.get('http://localhost:3000/budget');
                 return res.data;
             } catch (error) {
-                 // handle error
+                // handle error
                 console.log('error', error);
                 return [];
             }
@@ -171,21 +171,172 @@
                 schema.datasets[0].backgroundColor = [];
                 for (let i = 0; i < data.length; i++) {
                     schema.datasets[0].data.push(data[i].budget);
-                    schema.datasets[0].backgroundColor.push(`rgba(${Math.random()*255}, ${Math.random()*255}, ${Math.random()*255}, 1)`)
+                    schema.datasets[0].backgroundColor.push(`rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, 1)`)
                     schema.labels.push(data[i].title);
                 }
             }
             return schema
         }
 
+        const getD3Data = async () => {
+            let budgetData = await axios.get('http://localhost:3000/budgetFile');
+            budgetData = budgetData.data.data;
+            budgetData.forEach(budget => {
+                budget.budget = +budget.budget;
+                budget.color = `rgba(${parseInt(Math.random() * 255)}, ${parseInt(Math.random() * 255)}, ${parseInt(Math.random() * 255)}, 1)`;
+            });
+            return budgetData;
+        }
+        const renderD3PieChart = async (d3Data) => {
+            const data = d3Data.map(val => ({ 'label': val.title, 'value': val.budget }));
+            let budget = [], indiColors = [];
+            const domains = data.map((val) => {
+                budget.push(val.value);
+                indiColors.push(`rgba(${parseInt(Math.random() * 255)}, ${parseInt(Math.random() * 255)}, ${parseInt(Math.random() * 255)}, 1)`);
+                return val.label;
+            });
+
+            const d3SVG = d3.select("#d3Chart");
+            const width = +d3SVG.attr("width"),
+                height = +d3SVG.attr("height"),
+                radius = Math.min(width, height) / 2;
+
+            const mainSvgGrp = d3SVG.append("g")
+
+            mainSvgGrp.append("g")
+                .attr("class", "slices");
+            mainSvgGrp.append("g")
+                .attr("class", "labels");
+            mainSvgGrp.append("g")
+                .attr("class", "lines");
+
+
+            console.log(width, height, radius);
+
+            const pie = d3.layout.pie()
+                .sort(null)
+                .value(function (d) {
+                    return d.value;
+                });
+
+            const arc = d3.svg.arc()
+                .outerRadius(radius * 0.8)
+                .innerRadius(radius * 0.4);
+
+            const outerArc = d3.svg.arc()
+                .innerRadius(radius * 0.9)
+                .outerRadius(radius * 0.9);
+
+            mainSvgGrp.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+            const key = d => d.data.label;
+
+            const color = d3.scale.ordinal()
+                .domain(domains)
+                .range(indiColors);
+
+            /* ------- PIE SLICES -------*/
+            var slice = mainSvgGrp.select(".slices").selectAll("path.slice")
+                .data(pie(data), key);
+
+            slice.enter()
+                .insert("path")
+                .style("fill", function (d) { return color(d.data.label); })
+                .attr("class", "slice");
+
+            slice
+                .transition().duration(1000)
+                .attrTween("d", function (d) {
+                    this._current = this._current || d;
+                    var interpolate = d3.interpolate(this._current, d);
+                    this._current = interpolate(0);
+                    return function (t) {
+                        return arc(interpolate(t));
+                    };
+                })
+
+            slice.exit()
+                .remove();
+
+            /* ------- TEXT LABELS -------*/
+
+            var text = mainSvgGrp.select(".labels").selectAll("text")
+                .data(pie(data), key);
+
+            text.enter()
+                .append("text")
+                .attr("dy", ".35em")
+                .text(function (d) {
+                    return d.data.label;
+                });
+
+            function midAngle(d) {
+                return d.startAngle + (d.endAngle - d.startAngle) / 2;
+            }
+
+            text.transition().duration(1000)
+                .attrTween("transform", function (d) {
+                    this._current = this._current || d;
+                    var interpolate = d3.interpolate(this._current, d);
+                    this._current = interpolate(0);
+                    return function (t) {
+                        var d2 = interpolate(t);
+                        var pos = outerArc.centroid(d2);
+                        pos[0] = radius * (midAngle(d2) < Math.PI ? 1 : -1);
+                        return "translate(" + pos + ")";
+                    };
+                })
+                .styleTween("text-anchor", function (d) {
+                    this._current = this._current || d;
+                    var interpolate = d3.interpolate(this._current, d);
+                    this._current = interpolate(0);
+                    return function (t) {
+                        var d2 = interpolate(t);
+                        return midAngle(d2) < Math.PI ? "start" : "end";
+                    };
+                });
+
+            text.exit()
+                .remove();
+
+            /* ------- SLICE TO TEXT POLYLINES -------*/
+
+            var polyline = mainSvgGrp.select(".lines").selectAll("polyline")
+                .data(pie(data), key);
+
+            polyline.enter()
+                .append("polyline");
+
+            polyline.transition().duration(1000)
+                .attrTween("points", function (d) {
+                    this._current = this._current || d;
+                    var interpolate = d3.interpolate(this._current, d);
+                    this._current = interpolate(0);
+                    return function (t) {
+                        var d2 = interpolate(t);
+                        var pos = outerArc.centroid(d2);
+                        pos[0] = radius * 0.95 * (midAngle(d2) < Math.PI ? 1 : -1);
+                        return [arc.centroid(d2), outerArc.centroid(d2), pos];
+                    };
+                });
+
+            polyline.exit()
+                .remove();
+        }
+
         const init = async () => {
             const rawData = await getBudget();
-            const structuredData = await structureTheBudget(rawData);
+            const structuredData = await structureTheBudget(rawData.data);
             await createChartJSPieChart(structuredData);
+            const d3RawData = await getD3Data();
+            console.log(d3RawData);
+            // await renderD3Pie(d3RawData);
+            await renderD3PieChart(d3RawData);
         }
 
         init().then(() => {
-            console.log('all changes made');
+
+            console.log('done loading');
         });
     </script>
 </body>

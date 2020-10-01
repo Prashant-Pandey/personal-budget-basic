@@ -14,10 +14,9 @@ nav.menu {
     padding: 0 40px;
 }
 
-nav.menu ul,
-nav.menu ul li {
+nav.menu ul, nav.menu ul li {
     margin: 0;
-    padding: 0 ;
+    padding: 0;
     list-style: none;
     display: inline-block;
 }
@@ -32,7 +31,7 @@ nav.menu ul li a {
     margin: 0;
 }
 
-nav.menu ul li a:hover  {
+nav.menu ul li a:hover {
     background-color: white;
     color: #4d5791;
 }
@@ -40,15 +39,14 @@ nav.menu ul li a:hover  {
 section.hero {
     height: 350px;
     background-color: #b4c6f0;
-    background-image: url('./bg.png');
+    background-image: url('../imgs/bg.png');
     background-size: 400px;
     background-repeat: no-repeat;
     background-position: center bottom;
     padding-top: 40px;
 }
 
-section.hero h1,
-section.hero h2 {
+section.hero h1, section.hero h2 {
     text-align: center;
     margin: 0;
 }
@@ -71,7 +69,7 @@ section.hero h2 {
 }
 
 .page-area {
-    max-width: 768px;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -90,10 +88,9 @@ section.hero h2 {
 .container article.text-box {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    max-width: 340px;
+    flex-wrap: wrap;
+    max-width: 600px;
     text-align: justify;
-    margin: 20px;
 }
 
 @media screen and (min-width: 768px) {
@@ -102,9 +99,20 @@ section.hero h2 {
     }
 }
 
-.hidden-visibility{
+.hidden-visibility {
     position: absolute;
     height: 0;
     width: 0;
     left: -1000px;
+}
+
+path.slice {
+    stroke-width: 2px;
+}
+
+polyline {
+    opacity: .3;
+    stroke: black;
+    stroke-width: 2px;
+    fill: none;
 }
