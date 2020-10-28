@@ -7,6 +7,10 @@ body {
     font-family: Tahoma, Arial;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 nav.menu {
     width: 100%;
     background-color: #4d5791;
@@ -66,6 +70,19 @@ section.hero h2 {
     width: 100%;
     display: flex;
     justify-content: center;
+    flex-direction: column;
+}
+
+.container .graph-area{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.container .graph-area article{
+    margin-bottom: 1.6em;
 }
 
 .page-area {
@@ -89,8 +106,12 @@ section.hero h2 {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    max-width: 600px;
+    max-width: 60ch;
     text-align: justify;
+}
+
+.container article.text-box.exceptions{
+    max-width: 600px;
 }
 
 @media screen and (min-width: 768px) {
@@ -115,4 +136,24 @@ polyline {
     stroke: black;
     stroke-width: 2px;
     fill: none;
+}
+
+#budget-data{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.budget-item{
+    padding: 1em;
+    list-style: none;
+}
+
+footer .form-group {
+    padding: 1em;
+}
+
+.budget-item-txt{
+    padding: 0 1em;
+    margin: 0 0.3em;
 }

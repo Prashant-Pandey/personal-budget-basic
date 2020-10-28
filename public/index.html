@@ -5,65 +5,117 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personal Budget</title>
-    <!-- This is an SEO Change -->
+
     <meta name="author" content="Prashant Pandey" />
     <meta name="description" content="The app that lets you manage your personal budget">
     <meta property="og:title" content="Personal Budget" />
     <meta property="og:image" content="./bg.png" />
-    <!-- <link rel="stylesheet" media="print" href="./css/reset.css" onload="this.media = 'all'">
-    <link rel="stylesheet" media="print" href="./css/main.css" onload="this.media = 'all'"> -->
     <link rel="stylesheet" href="./css/reset.css">
+    <link rel='stylesheet'
+        href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css' />
     <link rel="stylesheet" href="./css/main.css">
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css' />
+
+    <style>
+
+    </style>
 </head>
 
 <body>
-    <!-- This is a Semantic HTML Change -->
+    <!-- <div class="container-fluid">
+        <h3 class="row">Login</h3>
+        <div id="alert" class="alert alert-dismissible fade show" style="display: none;">
+            <span id="alert-text"></span>
+            <button type="button" class="close" onclick="dismissAlert()" data-dismiss="alert">&times;</button>
+        </div>
+        <main>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input class="form-control" type="text" name="username" id="username">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input class="form-control" type="password" name="password" id="password">
+            </div>
+            <div class="form-group">
+                <button class="form-control btn btn-outline-success" onclick="login()">Login</button>
+            </div>
+        </main>
+        <footer>
+            <div class="form-group">
+                <button class="form-control btn btn-primary" onclick="getDashboard()">Dashboard</button>
+            </div>
+
+            <div class="form-group">
+                <button class="form-control btn btn-info" onclick="getSettings()">Settings</button>
+            </div>
+
+            <div class="form-group">
+                <button onclick="logout()" class="logout form-control btn btn-danger"
+                    style="display: none;">Logout</button>
+            </div>
+
+
+        </footer>
+    </div> -->
+
     <header>
         <a href="#main-container" class="hidden-visibility">Skip to main content</a>
-        <!-- This is a Semantic HTML Change -->
+
         <nav class="menu" role="navigation">
             <ul>
-                <!-- This is an A11y Change -->
                 <li><a href="#">Home</a></li>
                 <li><a href="./about.html">About</a></li>
                 <li><a href="./login.html">Login</a></li>
                 <li><a href="https://google.com">Google</a></li>
             </ul>
         </nav>
-        <!-- This is a Semantic HTML Change -->
-        <!-- This is an SEO Change -->
-        <!-- This is an A11y Change -->
+
+
         <section class="hero" itemscope itemtype="https://schema.org/Product" role="heading">
             <h1 itemprop="name">Personal Budget</h1>
             <h2 itemprop="description">A personal-budget management app</h2>
         </section>
     </header>
-    <!-- This is a Semantic HTML Change -->
-    <!-- This is an A11y Change -->
+
     <main class="container center" id="main-container" role="main">
-        <!-- This is an A11y Change -->
-        <div class="page-area" role="presentation">
-            <!-- This is a Semantic HTML Change -->
-            <!-- This is an SEO Change -->
-            <article class="text-box" itemprop="additionalProperty" itemscope
+        <div class="graph-area">
+            <article class="exceptions" itemprop="additionalProperty" itemscope
                 itemtype="https://schema.org/PropertyValue">
                 <h1 itemprop="name">D3 JS</h1>
                 <p itemprop="value">
                     <svg id="d3Chart" height="300" width="500"></svg>
                 </p>
             </article>
-            <!-- This is a Semantic HTML Change -->
-            <!-- This is an SEO Change -->
-            <article class="text-box" itemprop="additionalProperty" itemscope
+
+
+            <article class="exceptions" itemprop="additionalProperty" itemscope
                 itemtype="https://schema.org/PropertyValue">
                 <h1 itemprop="name">Chart JS</h1>
                 <p itemprop="value">
                     <canvas id="myChart" height="300" width="500"></canvas>
                 </p>
             </article>
-            <!-- This is a Semantic HTML Change -->
-            <!-- This is an SEO Change -->
+
+            <article class="add-data-form">
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input class="form-control" type="text" name="title" id="title">
+                </div>
+                <div class="form-group">
+                    <label for="budget">Budget</label>
+                    <input class="form-control" type="number" name="budget" id="budget">
+                </div>
+                <div class="form-group">
+                    <label for="color">Color</label>
+                    <input class="form-control" type="text" name="color" id="color">
+                </div>
+                <div class="form-group">
+                    <button class="form-control btn btn-outline-success" onclick="setBudget()">Set Budget</button>
+                </div>
+            </article>
+        </div>
+        <div class="page-area" role="presentation">
             <article class="text-box" itemprop="additionalProperty" itemscope
                 itemtype="https://schema.org/PropertyValue">
                 <h1 itemprop="name">Stay on track</h1>
@@ -73,8 +125,8 @@
                     app will help you with that!
                 </p>
             </article>
-            <!-- This is a Semantic HTML Change -->
-            <!-- This is an SEO Change -->
+
+
             <article class="text-box" itemprop="additionalProperty" itemscope
                 itemtype="https://schema.org/PropertyValue">
                 <h1 itemprop="name">Alerts</h1>
@@ -82,8 +134,8 @@
                     What if your clothing budget ended? You will get an alert. The goal is to never go over the budget.
                 </p>
             </article>
-            <!-- This is a Semantic HTML Change -->
-            <!-- This is an SEO Change -->
+
+
             <article class="text-box" itemprop="additionalProperty" itemscope
                 itemtype="https://schema.org/PropertyValue">
                 <h1 itemprop="name">Results</h1>
@@ -93,8 +145,8 @@
                     because they know it is all good and accounted for.
                 </p>
             </article>
-            <!-- This is a Semantic HTML Change -->
-            <!-- This is an SEO Change -->
+
+
             <article class="text-box" itemprop="additionalProperty" itemscope
                 itemtype="https://schema.org/PropertyValue">
                 <h1 itemprop="name">Free</h1>
@@ -102,8 +154,8 @@
                     This app is free!!! And you are the only one holding your data!
                 </p>
             </article>
-            <!-- This is a Semantic HTML Change -->
-            <!-- This is an SEO Change -->
+
+
             <article class="text-box" itemprop="additionalProperty" itemscope
                 itemtype="https://schema.org/PropertyValue">
                 <h1 itemprop="name">Stay on track</h1>
@@ -113,8 +165,8 @@
                     app will help you with that!
                 </p>
             </article>
-            <!-- This is a Semantic HTML Change -->
-            <!-- This is an SEO Change -->
+
+
             <article class="text-box" itemprop="additionalProperty" itemscope
                 itemtype="https://schema.org/PropertyValue">
                 <h1 itemprop="name">Alerts</h1>
@@ -125,217 +177,276 @@
         </div>
 
     </main>
-    <!-- This is a Semantic HTML Change -->
+
     <footer class="bottom">
-        <!-- This is an A11y Change -->
         <div class="center" aria-label="Copyright">
             All rights reserved &copy; Prashant Pandey
         </div>
     </footer>
+
+
     <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js'></script>
-    <script src="https://d3js.org/d3.v3.min.js"></script>
-    <script defer>
-        const createChartJSPieChart = async (data) => {
-            const ctx = document.getElementById('myChart').getContext('2d');
-            const myPieChart = new Chart(ctx, { type: 'pie', data });
+    <!-- <script>
+        let cookieCheckerTimeOut;
+        function login() {
+            const data = {
+                username: document.getElementById("username").value,
+                password: document.getElementById("password").value
+            }
+            axios.post('/api/login', data)
+                .then((res) => {
+                    // clear the inputs
+                    document.getElementById("username").value = ''
+                    document.getElementById("password").value = ''
+                    if (res && res.data && res.data.success) {
+                        dismissAlert();
+                        setCookieWatcher();
+                        getDashboard();
+                    }
+                }).catch((err) => {
+                    setError(err.response.data.err);
+                })
         }
 
-        const getBudget = async () => {
+        function setCookieWatcher() {
+            const cookieCheckInterval = setInterval(
+                function () {
+                    if (!getCookie('token')) {
+                        logout();
+                        clearInterval(cookieCheckInterval);
+                    }
+                }
+                , 180000);
+        }
+
+
+        function setError(err) {
+            const errorMessage = document.getElementById("alert");
+            const alertText = document.getElementById("alert-text");
+
+            const classList = errorMessage.className.split(" ");
+            classList.push('alert-danger');
+            errorMessage.className = classList.join(" ")
+            errorMessage.style.display = 'block'
+            alertText.innerText = err
+        }
+
+        function dismissAlert() {
+            document.getElementById("alert").style.display = 'none'
+            document.getElementById("alert-text").innerText = '';
+        }
+
+        function getCookie(cookiename) {
             try {
-                const res = await axios.get('http://localhost:3000/budget');
-                return res.data;
+                var cookiestring = RegExp(cookiename + "=[^;]+").exec(document.cookie).toString().split("=")[1];
+                return decodeURIComponent(cookiestring);
             } catch (error) {
-                // handle error
-                console.log('error', error);
-                return [];
+                return false;
             }
         }
-        const structureTheBudget = (data) => {
-            let schema = {
-                datasets: [{
-                    data: [100, 350, 90],
-                    backgroundColor: ['#ffcd56', '#ff6384', '#36a2eb', '#fd6b19']
-                }],
 
-                // These labels appear in the legend and in the tooltips when hovering different arcs
-                labels: [
-                    'Eat out',
-                    'Rent',
-                    'Groceries'
-                ]
-            };
+        function deleteCookie(name) {
+            if (getCookie(name)) {
+                document.cookie = name + "=" +
+                    ";expires=Thu, 01 Jan 1970 00:00:01 GMT";
+            }
+        }
+
+        function logout() {
+            deleteCookie("token")
+            history.replaceState(null, 'Login', '/')
+            window.location.reload();
+        }
+
+
+        function getDashboard() {
+            axios.get('/api/dashboard', {
+                headers: {
+                    'Authorization': `Bearer ${getCookie('token')}`
+                }
+            }).then((res) => {
+                if (res && res.data && res.data.success) {
+                    setPage(res.data.message, "Dashboard", "/dashboard");
+                }
+            }).catch((err) => {
+                setError("unauthorized to access the page");
+            })
+        }
+
+        function setPage(message, title, url) {
+            history.pushState(null, title, url);
+            document.querySelector('h3.row').innerText = title;
+            document.querySelector('main').innerHTML = `<h1>${message}</h1>`;
+            document.querySelector(".logout").style.display = 'block';
+        }
+
+        function getSettings() {
+            axios.get('/api/settings', {
+                headers: {
+                    'Authorization': `Bearer ${getCookie('token')}`
+                }
+            }).then((res) => {
+                if (res && res.data && res.data.success) {
+                    setPage(res.data.message, "Settings", "/settings")
+                }
+            }).catch((err) => {
+                setError("unauthorized to access the page");
+            })
+        }
+
+        // if token is set
+        if (getCookie('token')) {
+            getDashboard();
+        }
+
+    </script> -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js'></script>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script defer>
+        let rawData, chartJSPieChart;
+        async function createChartJS(data) {
+            const myChart = document.getElementById('myChart')
+            const ctx = myChart.getContext('2d');
+            if(chartJSPieChart){
+                chartJSPieChart.destroy();
+            }
+            ctx.clearRect(0, 0, myChart.width, myChart.height);
+            
+            chartJSPieChart = new Chart(ctx, { type: 'pie', data });
+        }
+        async function createD3Chart(data) {
+            d3.selectAll("svg > *").remove();
+            const svg = d3.select("#d3Chart");
+            svg.selectAll().remove();
+            const width = +svg.attr("width"),
+                height = +svg.attr("height");
+            const radius = Math.min(width, height) / 2;
+
+            const mainSvgGrp = svg.append("g")
+                .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+            const pie = d3.pie()
+                .sort(null)
+                .value((d) => parseInt(d.value));
+            console.log(data);
+            const data_ready = pie(data);
+
+            const arc = d3.arc()
+                .innerRadius(radius * 0.4)
+                .outerRadius(radius * 0.8)
+
+            const outerArc = d3.arc()
+                .innerRadius(radius * 0.9)
+                .outerRadius(radius * 0.9)
+
+            const rad = radius;
+            mainSvgGrp.selectAll('.arcs')
+                .data(data_ready)
+                .enter()
+                .append('path')
+                .attr('d', arc)
+                .attr('class', 'arcs')
+                .attr('fill', d => d.data.color)
+                .attr('stroke', 'white')
+                .attr('stroke-width', '2px');
+            mainSvgGrp.selectAll('.polyline')
+                .data(data_ready)
+                .enter()
+                .append('polyline')
+                .attr("stroke", "black")
+                .style("fill", "none")
+                .attr('class', 'polyline')
+                .attr("stroke-width", 1)
+                .attr('points', function (d) {
+                    var posA = arc.centroid(d)
+                    var posB = outerArc.centroid(d)
+                    var posC = outerArc.centroid(d);
+                    var midangle = d.startAngle + (d.endAngle - d.startAngle) / 2
+                    posC[0] = rad * 0.95 * (midangle < Math.PI ? 1 : -1);
+                    return [posA, posB, posC]
+                });
+
+            mainSvgGrp
+                .selectAll('.text')
+                .data(data_ready)
+                .enter()
+                .append('text')
+                .text(d => d.data.label)
+                .attr('class', 'text')
+                .attr('transform', function (d) {
+                    var pos = outerArc.centroid(d);
+                    var midangle = d.startAngle + (d.endAngle - d.startAngle) / 2
+                    pos[0] = rad * 0.99 * (midangle < Math.PI ? 1 : -1);
+                    return 'translate(' + pos + ')';
+                })
+                .style('text-anchor', function (d) {
+                    var midangle = d.startAngle + (d.endAngle - d.startAngle) / 2
+                    return (midangle < Math.PI ? 'start' : 'end')
+                })
+
+        }
+
+        const structureTheBudget = (data) => {
+            let chartJSData = {
+                datasets: [{
+                    data: [],
+                    backgroundColor: []
+                }],
+                labels: []
+            },
+                d3JSData = [];
             if (data.length > 0) {
-                schema.datasets[0].data = [];
-                schema.labels = [];
-                schema.datasets[0].backgroundColor = [];
                 for (let i = 0; i < data.length; i++) {
-                    schema.datasets[0].data.push(data[i].budget);
-                    schema.datasets[0].backgroundColor.push(`rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, 1)`)
-                    schema.labels.push(data[i].title);
+                    chartJSData.datasets[0].data.push(data[i].budget);
+                    chartJSData.datasets[0].backgroundColor.push(data[i].color)
+                    chartJSData.labels.push(data[i].title);
+                    d3JSData.push({ label: data[i].title, value: data[i].budget, color: data[i].color });
                 }
             }
-            return schema
+            return { chartJSData, d3JSData };
         }
 
-        const getD3Data = async () => {
-            let budgetData = await axios.get('http://localhost:3000/budgetFile');
-            budgetData = budgetData.data.data;
-            budgetData.forEach(budget => {
-                budget.budget = +budget.budget;
-                budget.color = `rgba(${parseInt(Math.random() * 255)}, ${parseInt(Math.random() * 255)}, ${parseInt(Math.random() * 255)}, 1)`;
-            });
-            return budgetData;
+        const getBudgetData = async () => {
+            let budgetData = await axios.get('http://localhost:3000/budget');
+            return budgetData.data;
         }
-        const renderD3PieChart = async (d3Data) => {
-            const data = d3Data.map(val => ({ 'label': val.title, 'value': val.budget }));
-            let budget = [], indiColors = [];
-            const domains = data.map((val) => {
-                budget.push(val.value);
-                indiColors.push(`rgba(${parseInt(Math.random() * 255)}, ${parseInt(Math.random() * 255)}, ${parseInt(Math.random() * 255)}, 1)`);
-                return val.label;
-            });
 
-            const d3SVG = d3.select("#d3Chart");
-            const width = +d3SVG.attr("width"),
-                height = +d3SVG.attr("height"),
-                radius = Math.min(width, height) / 2;
-
-            const mainSvgGrp = d3SVG.append("g")
-
-            mainSvgGrp.append("g")
-                .attr("class", "slices");
-            mainSvgGrp.append("g")
-                .attr("class", "labels");
-            mainSvgGrp.append("g")
-                .attr("class", "lines");
-
-
-            console.log(width, height, radius);
-
-            const pie = d3.layout.pie()
-                .sort(null)
-                .value(function (d) {
-                    return d.value;
-                });
-
-            const arc = d3.svg.arc()
-                .outerRadius(radius * 0.8)
-                .innerRadius(radius * 0.4);
-
-            const outerArc = d3.svg.arc()
-                .innerRadius(radius * 0.9)
-                .outerRadius(radius * 0.9);
-
-            mainSvgGrp.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
-
-            const key = d => d.data.label;
-
-            const color = d3.scale.ordinal()
-                .domain(domains)
-                .range(indiColors);
-
-            /* ------- PIE SLICES -------*/
-            var slice = mainSvgGrp.select(".slices").selectAll("path.slice")
-                .data(pie(data), key);
-
-            slice.enter()
-                .insert("path")
-                .style("fill", function (d) { return color(d.data.label); })
-                .attr("class", "slice");
-
-            slice
-                .transition().duration(1000)
-                .attrTween("d", function (d) {
-                    this._current = this._current || d;
-                    var interpolate = d3.interpolate(this._current, d);
-                    this._current = interpolate(0);
-                    return function (t) {
-                        return arc(interpolate(t));
-                    };
-                })
-
-            slice.exit()
-                .remove();
-
-            /* ------- TEXT LABELS -------*/
-
-            var text = mainSvgGrp.select(".labels").selectAll("text")
-                .data(pie(data), key);
-
-            text.enter()
-                .append("text")
-                .attr("dy", ".35em")
-                .text(function (d) {
-                    return d.data.label;
-                });
-
-            function midAngle(d) {
-                return d.startAngle + (d.endAngle - d.startAngle) / 2;
+        const setBudget = async () => {
+            const title = document.getElementById("title").value;
+            const budget = document.getElementById("budget").value;
+            const color = document.getElementById("color").value;
+            const data = {
+                title: title,
+                budget: budget,
+                color: color
             }
+            // sanitize inputs
+            if (isNaN(parseInt(budget)) || typeof title !== "string") {
+                // show message
+            }
+            let budgetData = await axios.post('http://localhost:3000/budget', data);
 
-            text.transition().duration(1000)
-                .attrTween("transform", function (d) {
-                    this._current = this._current || d;
-                    var interpolate = d3.interpolate(this._current, d);
-                    this._current = interpolate(0);
-                    return function (t) {
-                        var d2 = interpolate(t);
-                        var pos = outerArc.centroid(d2);
-                        pos[0] = radius * (midAngle(d2) < Math.PI ? 1 : -1);
-                        return "translate(" + pos + ")";
-                    };
-                })
-                .styleTween("text-anchor", function (d) {
-                    this._current = this._current || d;
-                    var interpolate = d3.interpolate(this._current, d);
-                    this._current = interpolate(0);
-                    return function (t) {
-                        var d2 = interpolate(t);
-                        return midAngle(d2) < Math.PI ? "start" : "end";
-                    };
-                });
-
-            text.exit()
-                .remove();
-
-            /* ------- SLICE TO TEXT POLYLINES -------*/
-
-            var polyline = mainSvgGrp.select(".lines").selectAll("polyline")
-                .data(pie(data), key);
-
-            polyline.enter()
-                .append("polyline");
-
-            polyline.transition().duration(1000)
-                .attrTween("points", function (d) {
-                    this._current = this._current || d;
-                    var interpolate = d3.interpolate(this._current, d);
-                    this._current = interpolate(0);
-                    return function (t) {
-                        var d2 = interpolate(t);
-                        var pos = outerArc.centroid(d2);
-                        pos[0] = radius * 0.95 * (midAngle(d2) < Math.PI ? 1 : -1);
-                        return [arc.centroid(d2), outerArc.centroid(d2), pos];
-                    };
-                });
-
-            polyline.exit()
-                .remove();
+            if (budgetData.error) {
+                // show message
+            }
+            // show success message
+            document.getElementById("title").value = '';
+            document.getElementById("budget").value = '';
+            document.getElementById("color").value = '';
+            rawData.push(data)
+            init();
         }
 
-        const init = async () => {
-            const rawData = await getBudget();
-            const structuredData = await structureTheBudget(rawData.data);
-            await createChartJSPieChart(structuredData);
-            const d3RawData = await getD3Data();
-            console.log(d3RawData);
-            // await renderD3Pie(d3RawData);
-            await renderD3PieChart(d3RawData);
+        async function init(loadOnce=false) {
+            if (loadOnce) {
+                rawData = await getBudgetData();
+            }
+            const processedData = await structureTheBudget(rawData);
+            await createChartJS(processedData.chartJSData);
+            await createD3Chart(processedData.d3JSData);
         }
 
-        init().then(() => {
-
+        init(true).then(() => {
             console.log('done loading');
         });
     </script>

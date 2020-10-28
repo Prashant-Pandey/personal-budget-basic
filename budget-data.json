@@ -1,24 +1,31 @@
 {
     "data": [{
         "title": "Eat out",
-        "budget": 30
+        "budget": 30,
+        "color": "#7D0B95"
     }, {
         "title": "Rent",
-        "budget": 350
+        "budget": 350,
+        "color": "#A7D3E5"
     }, {
         "title": "Groceries",
-        "budget": 90
+        "budget": 90,
+        "color":"#59EC50"
     }, {
         "title": "Utilities",
-        "budget": 70
+        "budget": 70,
+        "color":"#6E14A4"
     }, {
         "title": "Cell Phone",
-        "budget": 40
+        "budget": 40,
+        "color": "#98F3AA"
     }, {
         "title": "Entertainment",
-        "budget": 180
+        "budget": 180,
+        "color": "#077F99"
     }, {
         "title": "Medical bills",
-        "budget": 300
+        "budget": 300,
+        "color": "#E0F06F"
     }]
 }
