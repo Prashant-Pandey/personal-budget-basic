@@ -9,7 +9,7 @@ const getBudgets = async () => {
 
 const createBudget = async (title, budget, color) => {
     try {
-        return await Budget.insertMany([{ title: title, budget: budget, color: color }]);
+        return await Budget.create([{ title: title, budget: budget, color: color }]);
     } catch (error) {
         return {
             error: error
